@@ -1,0 +1,28 @@
+.normal-price {
+    position: relative;
+    background-color: #ffffff;
+    z-index: 1;
+}
+
+/* "pair metallic gold with warm, deep-tone neutrals, such as charcoal or slate gray, chocolate brown, rich olive green, and dark tan or beige." */
+.percentage-wrapper {
+    color: #8f00ff;
+    font-weight: 600;
+}
+
+.small-savings {
+    color: #800080;
+    font-weight: 500;
+}
+
+.large-savings {
+    color: #ff1493;
+    font-size: 1.5em;
+    font-weight: 700;
+}
+
+.best-offer {
+    position: absolute;
+    top: 74%;
+    right: -25px;
+}
