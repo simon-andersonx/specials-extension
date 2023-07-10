@@ -1,4 +1,3 @@
-
 function waitForElm(selector) {
     return new Promise(resolve => {
         if (document.querySelector(selector)) {
@@ -20,12 +19,12 @@ function waitForElm(selector) {
 }
 
 waitForElm('.offer-strip').then((elm) => {
-    doWork();
+    calculateSpecialsPercentage();
 });
 
 
 // Work out how to consolidate duplicate code in specials-script.js
-function doWork() {
+function calculateSpecialsPercentage() {
     const offers = document.querySelectorAll('.offer-strip');
     let bestOfferVal = 0;
     offers.forEach(offer => {
@@ -71,7 +70,6 @@ function doWork() {
             bestOfferImg.src = chrome.runtime.getURL("images/best-offer-cat.png");
             bestOfferImg.alt = "This is the best offer on the page!";
             offerText.appendChild(bestOfferImg);
-            console.log(offerText);
         }
 
         offer.querySelector('.offers-normal-tile')?.classList.add('normal-price');

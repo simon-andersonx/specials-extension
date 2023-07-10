@@ -1,3 +1,15 @@
+chrome.action.onClicked.addListener((tab) => {
+    try {
+        chrome.scripting.executeScript({
+            target: {tabId: tab.id},
+            func: calculateSpecialsPercentage,
+        });
+    } catch (e) {
+        console.warn(e.message || e);
+        return;
+    }
+});
+
 chrome.webRequest.onCompleted.addListener(
     onCompleted,
     {
@@ -10,14 +22,12 @@ chrome.webRequest.onCompleted.addListener(
 );
 
 async function onCompleted(requestDetails) {
-    console.log(`onCompleted triggered for ${requestDetails.url}`);
     const [tab] = await chrome.tabs.query({active: true, currentWindow: true});
 
     try {
         chrome.scripting.executeScript({
             target: {tabId: tab.id},
             func: calculateSpecialsPercentage,
-            args: [{ foo: 'bar' }],
         });
     } catch (e) {
         console.warn(e.message || e);
@@ -25,20 +35,8 @@ async function onCompleted(requestDetails) {
     }
 }
 
-function calculateSpecialsPercentage(params) {
-    // params.foo;
-
-    doWork();
-
-    return {
-      success: true,
-      html: document.body.innerHTML,
-    };
-}
-
 // Work out how to consolidate duplicate code in specials-script.js
-function doWork() {
-    console.log('oncompleted');
+function calculateSpecialsPercentage() {
     const offers = document.querySelectorAll('.offer-strip');
     let bestOfferVal = 0;
     offers.forEach(offer => {
@@ -84,7 +82,6 @@ function doWork() {
             bestOfferImg.src = chrome.runtime.getURL("images/best-offer-cat.png");
             bestOfferImg.alt = "This is the best offer on the page!";
             offerText.appendChild(bestOfferImg);
-            console.log(offerText);
         }
 
         offer.querySelector('.offers-normal-tile')?.classList.add('normal-price');

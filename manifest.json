@@ -5,7 +5,6 @@
     "manifest_version": 3,
     "author": "Simon Anderson",
     "action": {
-      "default_popup": "index.html",
       "default_icon": "offer-icon.png"
     },
     "background": {
@@ -19,7 +18,8 @@
     "host_permissions": [
       "https://*.danmurphys.com.au/*",
       "https://api.danmurphys.com.au/apis/ui/Browse",
-      "https://api.danmurphys.com.au/apis/ui/ProductGroup/Products/member%20offers"
+      "https://api.danmurphys.com.au/apis/ui/ProductGroup/Products/member%20offers",
+      "https://api.danmurphys.com.au/apis/ui/Browse/SponsoredAds"
     ],
     "content_scripts": [
       {
